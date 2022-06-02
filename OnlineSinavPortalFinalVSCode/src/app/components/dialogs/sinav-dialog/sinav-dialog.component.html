@@ -1,0 +1,56 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container" *ngIf="islem!='detay'">
+
+  <form [formGroup]="frm">
+     <mat-form-field appearance="outline">
+      <mat-label>Sınav Adı</mat-label>
+       <input matInput placeholder="Sınav Adı" name="sinavAdi" formControlName="sinavAdi" required type="text"> 
+
+     </mat-form-field>
+
+
+  
+
+     <mat-form-field appearance="outline">
+      <mat-label>Sınav Kat Id</mat-label>
+       <input matInput placeholder="Sınav Kat Id" name="sinavKatId" formControlName="sinavKatId" required type="text"> 
+     </mat-form-field>
+
+     
+   
+     <mat-form-field appearance="outline">
+      <mat-label>Soru Sınav</mat-label>
+       <input matInput placeholder="Soru Sınav" name="soruSinavId" formControlName="soruSinavId" required type="text"> 
+     </mat-form-field>
+
+     <mat-form-field appearance="outline">
+      <mat-label>Soru Metin</mat-label>
+       <input matInput placeholder="Soru Metin" name="soruMetin" formControlName="soruMetin" required type="text"> 
+     </mat-form-field>
+     <jodit-editor [config]="Jconfig" formControlName="soruMetin"></jodit-editor>
+  
+
+
+
+
+
+  </form>
+
+<button mat-raised-button color="primary" (click)="dialogRef.close(frm.value)">Kaydet</button>&nbsp;
+<button mat-raised-button color="warn" (click)="dialogRef.close()">İptal</button>
+
+
+</div>
+
+<div class="container" *ngIf="islem=='detay'">
+<h2>{{yeniKayit.sinavAdi}}</h2>
+<div [innerHTML]="yeniKayit.soruMetin"></div>
+
+</div>
+
+
+
+
+

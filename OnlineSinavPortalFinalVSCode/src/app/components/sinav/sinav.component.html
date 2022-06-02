@@ -1,0 +1,90 @@
+<div class="container">
+  <h1>Sınav Listesi</h1>
+
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aranacak Sınavı Giriniz"(keyup)="Filtrele($event)">
+  </mat-form-field>
+
+<button mat-fab color="accent" matTooltip="Sınav Ekle" (click)="Ekle()">
+  <mat-icon aria-label="label">add</mat-icon>
+</button>
+&nbsp;
+
+<button mat-fab color="primary" matTooltip="Soru Ekle" (click)="Ekle()">
+  <mat-icon aria-label="label">add</mat-icon>
+</button>
+
+
+<p>&nbsp;</p>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+  <ng-container matColumnDef="sinavAdi">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Sınav Adı
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.sinavAdi}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="sinavId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Sınav Id
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.sinavId}} </mat-cell>
+  </ng-container>
+  
+
+
+  <ng-container matColumnDef="sinavKatId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Sınav Kat Id
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.sinavKatId}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="soruSinavId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Soru Sınav
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.soruSinavId}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="soruMetin">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Soru Metin
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.soruMetin}} </mat-cell>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="detay">
+    <mat-header-cell *matHeaderCellDef> İşlemler
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> 
+      <button mat-icon-button color="light" matTooltip="Cevap" [routerLink]="'/admin/cevap'">
+        <mat-icon aria-label="label">article</mat-icon>
+      </button>
+
+      
+      <button mat-icon-button color="light" matTooltip="Sınava Git" (click)="Sinav(kayit)">
+        <mat-icon aria-label="label">article</mat-icon>
+      </button>
+
+      <button mat-icon-button color="primary" matTooltip="Sınavı Düzenle" (click)="Duzenle(kayit)">
+        <mat-icon aria-label="label">edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn" matTooltip="Sınavı Sil"  (click)="Sil(kayit)">
+        <mat-icon aria-label="label">delete</mat-icon>
+      </button>
+    
+    </mat-cell>
+  </ng-container>
+
+
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator 
+     
+      [pageSizeOptions]="[10, 15, 25, 100]" showFirstLastButtons="">
+</mat-paginator>
+</div>
